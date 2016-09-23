@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+<!--
+	$.ajax를 이용해서 비동기로 Ex11_jsonlib.jsp를 요청 > html로 넘어오므로 태그는 다 지워야 함
+	받은 json 화면에 출력 
+ -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$.ajax({
+		type:"post",
+		dataType:"json",
+		url:"Ex11_jsonlib.jsp",
+		success:function(data){
+			$.each(data, function(index, obj){
+				$('#display').append(obj.empno+" "+obj.ename+"<br>");
+			});
+		}
+	});
+});
+</script> 
+
+</head>
+<body>
+<div id="display"></div>
+</body>
+</html>

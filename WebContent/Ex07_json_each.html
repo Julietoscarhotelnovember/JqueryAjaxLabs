@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+</head>
+<body>
+	<h3>$.each</h3>
+	<div id="print"></div>
+	
+	<h3>for(in) 구문</h3>
+	<div id="print2"></div>
+	
+	<h3>$.each</h3>
+	<div id="print3"></div>
+	
+	<h3>for(in) 구문</h3>
+	<div id="print4"></div>
+</body>
+<script type="text/javascript">
+	var array = [
+	             {name:"홍길동",job:"군인"},
+	             {name:"김유신",job:"장군"},
+	             {name:"이순신",job:"해군"},
+	             {name:"유관순",job:"여군"}
+	            ];
+	$(function(){
+		
+	//1.$.each(Array,function(index,item){})
+	//사용해서 결과를 #print 넣으세요
+	var str="";
+	$.each(array, function(index, item){
+		str+="이름: "+item.name+" 직업: "+item.job+"<br>";
+	});
+	$('#print').html(str);
+	
+	//2. 자바스크립트(for(var i in array)) 제어문을 통해서 
+	//결과를 #print2 넣으세요
+	str="";
+	for(var i in array){
+		str+="이름: "+array[i].name+" 직업: "+array[i].job+"<br>";
+	}
+	document.getElementById("print2").innerHTML=str;
+	
+	
+	//3,4번 문제
+	var xx ={
+				values:[
+				         {no:1 , title:"hello"}, 
+				         {no:2 , title:"world"},
+				         {no:3 , title:"korea"}
+				       ]
+				,searchText:"검색"
+		
+	        }
+	//3.$.each 문을 사용해서 결과 (no, title ) 출력하세요
+	//#print3 안에
+	//console.log(xx);
+	//console.log("xx.values : " + xx.values);
+	//console.log(xx.values[1].no + "/" +  xx.values[1].title);
+	str="";
+	$.each(xx.values, function(index, obj){
+		str+="번호: "+obj.no+" 제목: "+obj.title+"<br>";
+	});
+	str+="searchText: "+xx.searchText;
+	$('#print3').html(str);
+	//if(typeof(value)=="object") 판단구문 > 자바의 instanceof 와 비슷
+			 
+	//4.자바스크립트(for(var i in array)) 제어문을 통해서 
+	//#print4 안에 
+	str="";
+	for(var i in xx.values){
+		str+="번호: "+xx.values[i].no+" 제목: "+xx.values[i].title+"<br>";
+	}
+	str+="searchText: "+xx.searchText;
+	document.getElementById("print4").innerHTML=str;
+	
+	});
+</script>
+</html>

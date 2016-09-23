@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('#login').click(function(){
+				$.ajax({
+					type:"post",
+					dataType:"html",
+					url:"Ex09_login_ok2.jsp",
+					data : {
+						user_id : $("#user_id").val(),
+						user_pw: $('#user_pw').val()
+					},
+					success:function(data){
+						if(data.trim()=="success"){
+							$('#form1').hide();
+							$('#message').append("<p>로그인성공</p>");
+						} else {
+							$('#message').append("<p>로그인실패</p>");
+						}
+					}
+				});
+			});
+		});
+	
+</script>
+</head>
+<body>
+<!-- 
+로그인 버튼 클릭시 
+비동기 요청 : Ex09_login_ok.jsp  => EL & JSTL 변환
+$.ajax() 함수 사용
+:Data : id , pwd
+:전송방식 : post
+:응답데이터 타입 : html
+:서버가 응답 결과 : success 문자 또는 fail 둘중 하나 리턴 
+:만약 success 문자라면 
+:form 태그는 감추고
+:div에 <p></p>를 만드어서 로그인 성공 출력 (색상 , 글꼴)
+
+:div에 <p></p>를 만드어서 로그인 실패 출력 (색상 , 글꼴)
+
+
+ -->
+	<form id="form1" name="form1" action="Ex09_login_ok.jsp" method="post">
+		<table>
+			<tr>
+				<td>아이디</td>
+				<td><input type='text' id='user_id' name='user_id' tabindex='1' /></td>
+				<td rowspan='2'>
+				<input type='button' id='login' tabindex='3' value='로그인' style='height: 50px' /></td>
+			</tr>
+			<tr>
+				<td>비밀번호</td>
+				<td><input type='password' id='user_pw' name='user_pw'	tabindex='2' /></td>
+			</tr>
+		</table>
+	</form>
+	<div id="message"></div>
+</body>
+</html>

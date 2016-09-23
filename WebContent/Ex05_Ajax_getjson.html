@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript">
+//$.getJSON(url[data][successcallback])
+//dataType은 json으로 정의
+$(function(){
+	$('#btn .btnload').click(function(){
+		$.getJSON('Ex05_json.json', function(data){
+			$('#display').empty();
+			var table="<table border='1'>";
+			table+="<tr><td>INDEX</td><td>num</td><td>name</td></tr>";
+			$.each(data, function(index, obj){
+				//console.log(index+" / "+obj.num+" / "+obj.name);
+				/* table+="<tr>";
+					table+="<td>"+index+"</td>";
+					table+="<td>"+obj.num+"</td>";
+					table+="<td>"+obj["name"]+"</td>";
+				table+="</tr>"; */
+				
+				table+="<tr>";
+					table+="<td>"+index+"</td>";
+					table+="<td>"+obj.num+"</td>";
+					if(obj.num){
+						table+="<td>"+obj.name+"</td>";
+					} else {
+						table+="<td>"+"Empty"+"</td>";
+					}
+				table+="</tr>";
+			});
+			table+="</table>";
+			$('#display').html(table);
+		});
+	});
+});
+</script>
+</head>
+<body>
+<div id="btn">
+	<div class="btnload">json data load click</div>
+</div>
+<div id="display"></div>
+</body>
+</html>

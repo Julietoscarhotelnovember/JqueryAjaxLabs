@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript">
+//$.get(), $.post() > type 정의됨
+//$(selector).load() > html(txt) > selector에 삽입
+//$.getScript() > script(js)
+//$.getJSON() > json
+
+$(function(){
+	$.ajax({
+			type:"post",
+			dataType:"json",
+			url:"Ex08_Jsonboard.json",
+			success:function(receiveddata){
+				console.log(receiveddata);
+				//가공
+				//배열 > $.each()
+				$('#treedata').append("<tr><td>id</td><td>name</td><td>title</td><td>content</td></tr>");
+				$.each(receiveddata, function(){	//이렇게 하면 this로 받는다
+					$('#treedata').append(
+						"<tr><td>"+this.id+"</td><td>"+this.name+"</td><td>"+this.title+"</td><td>"+this.content+"</td></tr>"
+					);
+				});
+			},
+			error:function(xhr){
+				alert(xhr.status); //상태코드
+			}
+			
+	});
+});
+</script>
+</head>
+<body>
+	<table id="treedata" border="1">
+	</table>
+</body>
+</html>

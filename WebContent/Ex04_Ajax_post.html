@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript">
+//$.post라는 jquery 함수를 이용해  name, pwd를 서버로 전송해서
+//응답 결과를 message 안에 출력
+
+//jquery.post(url[data][success function(결과값)][dataType])
+$(function(){
+	$('#btn').click(function(){	
+		$.post('Ex04_Server.jsp',
+				{
+					"name":$('#name').val(),
+					"pwd":$('#pwd').val(),
+				},
+				function(data){
+					$('#message').html(data);			
+				});
+		});
+	});
+</script>
+</head>
+<body>
+이름: <input type="text" id="name"><br>
+비번: <input type="password" id="pwd"><br>
+<input type="button" id="btn" value="비동기 전송">
+<hr>
+<div id="message"></div>
+</body>
+</html>
